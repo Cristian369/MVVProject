@@ -40,11 +40,14 @@ using namespace std;
 #define TFT_SLPIN   0x10
 #endif
 
-#define TFT_MOSI            19
-#define TFT_SCLK            18
-#define TFT_CS              5
-#define TFT_DC              16
-#define TFT_RST             23
+#define TFT_MOSI            19    // real physical pin on esp32 is 23
+#define TFT_SCLK            18    // real physical pin is called SCK and is located at 18
+#define TFT_CS              5     // real physical pin 15 
+#define TFT_DC              16    // real physical pin 2
+#define TFT_RST             23    // real physical pin 4
+
+// LCD is on 3v3, VCC is on VIN, and GND is on GND of course.
+// I have no idea how tf this seems to be making my display work but it does...
 
 #define TFT_BL          0  // Display backlight control pin
 #define ADC_EN          14
