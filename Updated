@@ -48,6 +48,10 @@ using namespace std;
 
 // LCD is on 3v3, VCC is on VIN, and GND is on GND of course.
 // I have no idea how tf this seems to be making my display work but it does...
+// Also just to note that I tried removing every cable one by one and see if it changes the screen output. 
+// Removing any of these cables leads to display not working. The only useless cable turned out to be MISO
+// Link to display pinouts for convenience: https://thesolaruniverse.files.wordpress.com/2021/03/092_figure_04_96_dpi.png
+// Link to ESP32 pinout: https://m.media-amazon.com/images/I/61g5+xqvYhL._AC_SL1500_.jpg
 
 #define TFT_BL          0  // Display backlight control pin
 #define ADC_EN          14
