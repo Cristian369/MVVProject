@@ -39,11 +39,11 @@ using namespace std;
 #define TFT_SLPIN   0x10
 #endif
 
-#define TFT_MOSI            19
-#define TFT_SCLK            18
-#define TFT_CS              5
-#define TFT_DC              16
-#define TFT_RST             23
+#define TFT_MOSI            23
+#define TFT_SCK             18
+#define TFT_CS              15
+#define TFT_DC              2
+#define TFT_RST             4
 
 #define TFT_BL          4  // Display backlight control pin
 #define ADC_EN          14
