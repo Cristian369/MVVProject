@@ -1,6 +1,7 @@
 //Quellen: 
 // https://github.com/Bodmer/TFT_eSPI/blob/master/examples/320%20x%20240/Free_Font_Demo/Free_Font_Demo.ino
 // https://github.com/Xinyuan-LilyGO/TTGO-T-Display
+#include <esp_task_wdt.h>
 #include <WiFi.h>
 #include <HTTPClient.h>
 //mvg api timestamp in ms needs long long
@@ -39,17 +40,17 @@ using namespace std;
 #define TFT_SLPIN   0x10
 #endif
 
-#define TFT_MOSI 23
-#define TFT_SCK 18
-#define TFT_CS 15
-#define TFT_DC 2
-#define TFT_RST 4
+#define TFT_MOSI            19
+#define TFT_SCLK            18
+#define TFT_CS              5
+#define TFT_DC              16
+#define TFT_RST             23
 
-#define TFT_BL          35  // Display backlight control pin
+#define TFT_BL          0  // Display backlight control pin
 #define ADC_EN          14
 #define ADC_PIN         34
-#define BUTTON_1        32
-#define BUTTON_2        32
+#define BUTTON_1        35
+#define BUTTON_2        0
 
 enum types {
   mvg_api,
@@ -66,7 +67,7 @@ typedef struct {
   const char *include_line[MAX_INCLUDE_LINE];
   const char *exclude_destinations[MAX_EXCLUDE_DESTINATION];
 } Config;
-#include "config.h";
+#include "config.h"
 
 typedef struct {
   unsigned long long aimed_time;
@@ -321,6 +322,8 @@ void setup()
 {
   Serial.begin(115200);
 
+  esp_task_wdt_init(10, true);
+
   setup_display();
 
   button_init();
@@ -382,7 +385,6 @@ void loop() {
     config_number = connect_wifi();
       }
   }
-  drawTopLine();
 }
 
 int connect_wifi()
